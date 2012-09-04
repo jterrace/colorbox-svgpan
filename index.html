@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+    <meta charset="utf-8">
+    <title>Colorbox + jquery-svgpan</title>
+    <meta name="description" content="A mashup of colorbox and svgpan so SVG images can be panned/zoomed inside a colorbox">
+    
+    <link rel="stylesheet" href="libs/colorbox/colorbox.css">
+    
+    <script src="libs/jquery/jquery-1.7.2.min.js"></script>
+    <script src="libs/colorbox/jquery.colorbox-min.js"></script>
+    <script src="libs/jquery-svgpan/jquery-svgpan.min.js"></script>
+    <script src="libs/jquery-smartresize/jquery.debouncedresize.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('a.gallery').colorbox({
+                'width': '100%',
+                                     'height': '100%'});
+            $('a.inline').colorbox({ 
+                                     inline: true,
+            	                     width: "100%",
+            	                     height: "100%"
+            	                   });
+            
+            $('img.inline-svg').svgPan('viewport');
+        });
+        
+        $(window).on("debouncedresize", function( event ) {
+        	$.colorbox.resize({width: "100%", height: "100%"});
+        });
+        
+    </script>
+  </head>
+  <body>
+    <p>Hello world! This is HTML5 Boilerplate.</p>
+    <p><a class='gallery' href='images/combined_model_props.svg'>SVG Image Link</a></p>
+    <p><a class='gallery' href='images/teddy_orig.png'>PNG Image Link</a></p>
+    <p><a class='inline' href="#inline_content">Inline HTML</a></p>
+    <div> <!-- style='display:none'> -->
+      <div id='inline_content' style='padding:10px; background:#fff; text-align: center;'>
+        <p><strong>This content comes from a hidden element on this page.</strong></p>
+        <img width="100%" id="inline-svg" src="images/combined_model_props.svg"/>
+      </div>
+    </div>
+  </body>
+</html>
